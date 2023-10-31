@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toy</title>
+    <style>
+        body {
+            width: 100wh;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to left, rgba(231, 231, 15, 0.5), lightblue);
+        }
+        .heading
+        {
+            font-size: 50px;
+
+        }
+        .container
+        {
+            max-width: 350px;
+            text-align: center;
+            padding: 30px;
+            border: 2px solid black;
+        }
+        .player
+        {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 10px;
+            font-size: 20px;
+        }
+        .btn
+        {
+            width: 50px;
+            height: 50px;
+            font-size:25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .row
+        {
+            display: flex;
+            margin-top: 20px;
+            justify-content: space-evenly;
+        }
+        .btn1
+        {
+            width: 150px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="heading">Tic - Tac - Toy Game</div>
+        <div class="player">
+            <div>Player 1: (X)</div>
+            <div>Player 2: (O)</div>
+        </div>
+        <div class="row">
+            <!-- <button class="btn" onclick="even(0)"></button>
+            <button class="btn" onclick="even(1)"></button>
+            <button class="btn" onclick="even(2)"></button> -->
+               <input type="button" name="" class="btn" onclick="even(0)">
+            <input type="button" name="" class="btn" onclick="even(1)">
+            <input type="button" name="" class="btn" onclick="even(2)">
+
+        </div>
+         <div class="row">
+         <!--    <button class="btn" onclick="even(3)"></button>
+            <button class="btn" onclick="even(4)"></button>
+            <button class="btn" onclick="even(5)"></button> -->
+             <input type="button" name="" class="btn" onclick="even(3)">
+            <input type="button" name="" class="btn" onclick="even(4)">
+            <input type="button" name="" class="btn" onclick="even(5)">
+        </div>
+         <div class="row">
+           <!--  <button class="btn" onclick="even(6)"></button>
+            <button class="btn" onclick="even(7)"></button>
+            <button class="btn" onclick="even(8)"></button> -->
+            <input type="button" name="" class="btn" onclick="even(6)">
+            <input type="button" name="" class="btn" onclick="even(7)">
+            <input type="button" name="" class="btn" onclick="even(8)">
+        </div>
+        <div class="winner">
+            <h2 id="winner">Win : </h2>
+        </div>
+        <div>
+            <button class="btn1" id="restore" onclick="restart()">Reset button</button>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        
+     
+            var evenodd=true;
+            var allButtons = document.querySelectorAll(".btn");
+            var arr=[0,1,2,3,4,5,6,7,8];
+            var win=false;
+            var winText=document.getElementById('winner');
+            var count=0;
+
+
+        function even(val) {
+
+        if(!win)
+        {    
+            if((allButtons[val].value =='X' || allButtons[val].value == 'O' ))
+            {
+                // allButtons[val].innerText="";
+            }
+            else
+            {
+                if(evenodd)
+                {   
+                    allButtons[val].value = "X";
+                    arr[val]='X';   
+                    evenodd=false;
+                    check();
+                    count++;
+                }
+                else
+                {
+                    allButtons[val].value = "O";
+                    arr[val]='O';
+                    evenodd=true;
+                    check();
+                    count++;
+                } 
+            }
+
+        }
+     }
+
+
+     function check()
+     {
+        if(arr[0] == arr[1] && arr[1] == arr[2])
+        {
+            winText.innerText = "Winner = " + arr[0] + " is win";
+            win=true;
+        }
+        else if(arr[3] == arr[4] && arr[4] == arr[5])
+        {
+            winText.innerText = "Winner = " + arr[3] + " is win";
+            win=true;
+        }
+        else if(arr[6] == arr[7] && arr[7] == arr[8])
+        {
+            winText.innerText = "Winner = " + arr[6] + " is win";
+            win=true;
+        }
+        else if(arr[0] == arr[3] && arr[3] == arr[6])
+        {
+            winText.innerText = "Winner = " + arr[0] + " is win";
+            win=true;
+        }
+        else if(arr[1] == arr[4] && arr[4] == arr[7])
+        {
+            winText.innerText = "Winner = " + arr[1] + " is win";
+            win=true;
+        }
+        else if(arr[2] == arr[5] && arr[5] == arr[8])
+        {
+            winText.innerText = "Winner = " + arr[2] + " is win";
+            win=true;
+        }
+        else if(arr[0] == arr[4] && arr[4] == arr[8])
+        {
+            winText.innerText = "Winner = " + arr[0] + " is win";
+            win=true;
+        }
+        else if(arr[2] == arr[4] && arr[4] == arr[6])
+        {
+            winText.innerText = "Winner = " + arr[2] + " is win";
+            win=true;
+        }
+        else
+        {
+            if(count == 8)
+            {
+                winText.innerText= "Tied";
+            }
+        }
+     }
+
+     function restart() {
+
+        for(var i=0 ; i<=allButtons.length ; i++)
+        {
+            location.reload();
+            allButtons[i].value="";
+            
+        }
+     }
+
+
+    </script>
+</body>
+</html>
